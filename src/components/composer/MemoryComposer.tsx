@@ -243,7 +243,7 @@ export function MemoryComposer({
           submit();
         }}
         onChange={touch}
-        className="grid grid-cols-[minmax(0,1fr)] gap-8 px-5 pt-6 pb-36 lg:pb-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-10 md:px-6"
+        className="grid grid-cols-[minmax(0,1fr)] gap-8 px-5 pt-6 pb-32 lg:pb-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-10 md:px-6"
       >
         <section aria-labelledby="photos-heading" className="lg:sticky lg:top-20 lg:self-start">
           <h2 id="photos-heading" className="eyebrow mb-3">

@@ -44,7 +44,7 @@ export default async function PlanPage() {
                 <Link href={c.placeId ? `/explore/places/${c.placeId}` : `/memories/${c.lastMemoryId}`} className="flex h-full flex-col rounded-2xl bg-surface p-5 transition-colors hover:bg-paper-2">
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0">
-                      <p className="font-display truncate text-2xl">{c.title}</p>
+                      <p className="font-display text-xl leading-snug sm:text-2xl">{c.title}</p>
                       <p className="truncate text-sm text-ink-3">{[c.area, c.topFood ? `Try: ${c.topFood.name}` : null].filter(Boolean).join(" · ")}</p>
                     </div>
                     {c.avgRating != null ? (

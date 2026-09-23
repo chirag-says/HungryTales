@@ -200,7 +200,7 @@ async function DiscoverView({ session, sp }: { session: Session; sp: SP }) {
           <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
             {usage.map((u) => (
               <li key={u.id}>
-                <Link href={`/explore?food=${u.id}`} className="flex items-center justify-between rounded-2xl bg-surface px-4 py-3 hover:bg-paper-2">
+                <Link href={`/explore?food=${u.id}`} className="flex flex-col gap-1 rounded-2xl bg-surface px-4 py-3 hover:bg-paper-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
                   <span className="font-medium">{u.name}</span>
                   <span className="text-sm text-ink-3">
                     {u.count}× · last {formatLongDate(u.lastEatenOn as string)}

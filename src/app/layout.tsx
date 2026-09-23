@@ -28,6 +28,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  maximumScale: 5,
   viewportFit: "cover",
   // Android: shrink the layout above the keyboard so sticky save bars and sheets stay visible.
   interactiveWidget: "resizes-content",

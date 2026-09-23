@@ -51,7 +51,7 @@ export function PhotoViewer({ photos, alt }: { photos: PhotoView[]; alt: string 
             onClick={() => setFull(i)}
             aria-label={`View photo ${i + 1} of ${photos.length} full screen`}
           >
-            <Photo src={p.displayUrl} alt={`${alt}, photo ${i + 1}`} eager={i === 0} className="aspect-[4/5] max-h-[78dvh] w-full sm:aspect-[3/2]" />
+            <Photo src={p.displayUrl} alt={`${alt}, photo ${i + 1}`} eager={i === 0} className="aspect-[3/4] max-h-[72dvh] w-full sm:aspect-[3/2] sm:max-h-[78dvh]" />
           </button>
         ))}
       </div>

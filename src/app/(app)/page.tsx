@@ -52,7 +52,7 @@ export default async function HomePage() {
       <header className="mb-6 flex items-end justify-between gap-4 md:mb-8">
         <div>
           <p className="eyebrow">{duo.name}</p>
-          <h1 className="font-display mt-1 text-3xl leading-tight sm:text-4xl">
+          <h1 className="font-display mt-1 text-2xl leading-tight sm:text-4xl">
             {ordered.length} {ordered.length === 1 ? "meal" : "meals"} together
           </h1>
           <p className="mt-1 text-ink-3">since {formatLongDate(firstOn)}</p>

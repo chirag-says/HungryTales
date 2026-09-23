@@ -66,7 +66,7 @@ export default async function WrappedPage({ params }: Props) {
       </Link>
       <header className="mt-4 mb-8">
         <p className="eyebrow">Food Wrapped</p>
-        <h1 className="font-display mt-2 text-6xl leading-none sm:text-7xl">{label}</h1>
+        <h1 className="font-display mt-2 text-5xl leading-none sm:text-7xl">{label}</h1>
       </header>
 
       {stats.memoryCount === 0 ? (
@@ -74,7 +74,7 @@ export default async function WrappedPage({ params }: Props) {
       ) : (
         <div className="flex flex-col gap-4">
           <Panel eyebrow="Together you ate" tone="accent">
-            <p className="font-display text-7xl leading-none">{stats.memoryCount}</p>
+            <p className="font-display text-5xl leading-none sm:text-7xl">{stats.memoryCount}</p>
             <p className="mt-2 text-xl">
               {stats.memoryCount === 1 ? "meal" : "meals"} at {stats.placesVisited} {stats.placesVisited === 1 ? "place" : "places"}
               {stats.photoCount ? `, with ${stats.photoCount} photos` : ""}.
@@ -89,7 +89,7 @@ export default async function WrappedPage({ params }: Props) {
 
           {stats.newPlaces ? (
             <Panel eyebrow="New to you">
-              <p className="font-display text-6xl leading-none">{stats.newPlaces}</p>
+              <p className="font-display text-5xl leading-none sm:text-6xl">{stats.newPlaces}</p>
               <p className="mt-2 text-lg text-ink-2">{stats.newPlaces === 1 ? "place you tried for the first time" : "places you tried for the first time"}.</p>
               {topDiscoverer ? <p className="mt-1 text-ink-3">{topDiscoverer.name} found the most of them ({stats.topDiscoverer!.count}).</p> : null}
             </Panel>
@@ -97,7 +97,7 @@ export default async function WrappedPage({ params }: Props) {
 
           {stats.mostVisitedPlace ? (
             <Panel eyebrow="Your place" tone="ink">
-              <p className="font-display text-5xl leading-tight">{stats.mostVisitedPlace.name}</p>
+              <p className="font-display text-3xl leading-tight sm:text-5xl">{stats.mostVisitedPlace.name}</p>
               <p className="mt-2 text-paper/75">{stats.mostVisitedPlace.count} visits</p>
             </Panel>
           ) : null}
@@ -106,13 +106,13 @@ export default async function WrappedPage({ params }: Props) {
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               {stats.topFood ? (
                 <Panel eyebrow="Most eaten dish">
-                  <p className="font-display text-4xl leading-tight">{stats.topFood.name}</p>
+                  <p className="font-display text-3xl leading-tight sm:text-4xl">{stats.topFood.name}</p>
                   <p className="mt-1 text-ink-3">{stats.topFood.count} times</p>
                 </Panel>
               ) : null}
               {stats.topCategory ? (
                 <Panel eyebrow="Most eaten kind">
-                  <p className="font-display text-4xl leading-tight">{stats.topCategory.name}</p>
+                  <p className="font-display text-3xl leading-tight sm:text-4xl">{stats.topCategory.name}</p>
                   <p className="mt-1 text-ink-3">{stats.topCategory.count} meals</p>
                 </Panel>
               ) : null}
@@ -147,7 +147,7 @@ export default async function WrappedPage({ params }: Props) {
 
           {stats.costedMemories ? (
             <Panel eyebrow="Spent on food together">
-              <p className="font-display text-5xl leading-none">{formatMoney(stats.totalSpentMinor, duo.currency)}</p>
+              <p className="font-display text-4xl leading-none sm:text-5xl">{formatMoney(stats.totalSpentMinor, duo.currency)}</p>
               <p className="mt-2 text-ink-2">
                 {stats.costedMemories > 1
                   ? `About ${formatMoney(stats.avgSpendMinor, duo.currency, { compact: true })} per meal, across ${stats.costedMemories} bills you logged.`
@@ -159,7 +159,7 @@ export default async function WrappedPage({ params }: Props) {
 
           {stats.mostActiveMonth ? (
             <Panel eyebrow="Busiest month">
-              <p className="font-display text-5xl leading-none">{monthName(parseDate(`${stats.mostActiveMonth.key}-01`).month)}</p>
+              <p className="font-display text-4xl leading-none sm:text-5xl">{monthName(parseDate(`${stats.mostActiveMonth.key}-01`).month)}</p>
               <p className="mt-2 text-ink-2">{stats.mostActiveMonth.count} meals</p>
               <div className="mt-5 flex h-20 items-end gap-1" aria-hidden>
                 {stats.months.map((m) => (
@@ -171,7 +171,7 @@ export default async function WrappedPage({ params }: Props) {
 
           {stats.avgRating != null && stats.ratedMemories >= 3 ? (
             <Panel eyebrow="On average you rated meals" tone="ink">
-              <p className="font-display text-7xl leading-none">
+              <p className="font-display text-5xl leading-none sm:text-7xl">
                 {formatRating(stats.avgRating)}
                 <span className="text-2xl text-paper/60">/10</span>
               </p>

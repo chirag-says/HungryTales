@@ -132,9 +132,9 @@ export function FoodRoulette({ currency, categories }: { currency: string; categ
                 <p className="text-sm text-ink-3">Or maybe</p>
                 <ul className="mt-1 flex flex-col">
                   {result.alternates.map((a) => (
-                    <li key={a.title} className="flex items-center justify-between gap-3 py-1.5">
+                    <li key={a.title} className="flex flex-col gap-0.5 py-1.5 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
                       <span className="font-medium">{a.title}</span>
-                      <span className="truncate text-sm text-ink-3">{a.reasons[0]}</span>
+                      <span className="text-sm text-ink-3">{a.reasons[0]}</span>
                     </li>
                   ))}
                 </ul>

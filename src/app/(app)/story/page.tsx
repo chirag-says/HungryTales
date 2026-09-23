@@ -40,7 +40,7 @@ export default async function StoryPage({ searchParams }: { searchParams: Promis
           <X className="size-5" aria-hidden />
         </Link>
         <p className="text-sm tracking-[0.2em] text-ink/60 uppercase">Our food story</p>
-        <h1 className="font-display mt-4 text-5xl sm:text-6xl">{duo.name}</h1>
+        <h1 className="font-display mt-4 text-4xl sm:text-6xl">{duo.name}</h1>
         <p className="mt-4 text-ink/70">
           {ordered.length} {ordered.length === 1 ? "memory" : "memories"} since {formatLongDate(ordered[0].eatenOn)}
         </p>
@@ -70,7 +70,7 @@ export default async function StoryPage({ searchParams }: { searchParams: Promis
         <div key={memory.id} className="mx-auto flex min-h-full max-w-6xl animate-[reveal_380ms_var(--ease-out-soft)] flex-col md:flex-row md:items-center md:gap-10 md:p-10">
           <div className="relative md:w-[58%]">
             {cover ? (
-              <Photo src={cover.displayUrl} alt={memory.title} eager className="aspect-[4/5] max-h-[72dvh] w-full md:rounded-3xl" />
+              <Photo src={cover.displayUrl} alt={memory.title} eager className="aspect-[3/4] max-h-[65dvh] w-full sm:aspect-[4/5] sm:max-h-[72dvh] md:rounded-3xl" />
             ) : (
               <div className="grid aspect-[4/3] place-items-center bg-ink/5 md:rounded-3xl">
                 <p className="font-display px-8 text-center text-3xl text-ink/50">{memory.title}</p>
@@ -91,7 +91,7 @@ export default async function StoryPage({ searchParams }: { searchParams: Promis
               {formatLongDate(memory.eatenOn)}
               {time ? ` · ${time}` : ""}
             </p>
-            <h1 className="font-display mt-2 text-4xl leading-tight sm:text-5xl">{memory.title}</h1>
+            <h1 className="font-display mt-2 text-3xl leading-tight sm:text-5xl">{memory.title}</h1>
             {memory.place ? <p className="mt-1 text-lg text-ink/80">{memory.place.name}</p> : null}
 
             <dl className="mt-6 flex flex-wrap gap-x-8 gap-y-3">

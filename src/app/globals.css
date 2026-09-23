@@ -74,6 +74,8 @@ body {
   color: var(--ink);
   font-family: var(--font-sans);
   font-feature-settings: "ss01", "cv11";
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 ::selection {
@@ -102,9 +104,13 @@ body {
 
 .no-scrollbar {
   scrollbar-width: none;
+  scroll-snap-type: x proximity;
 }
 .no-scrollbar::-webkit-scrollbar {
   display: none;
+}
+.no-scrollbar > * {
+  scroll-snap-align: start;
 }
 
 .pb-safe {
@@ -154,6 +160,21 @@ dialog.sheet[open] {
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Prevent iOS from zooming when focusing inputs with font-size < 16px. */
+@supports (-webkit-touch-callout: none) {
+  input[type="text"],
+  input[type="search"],
+  input[type="date"],
+  input[type="time"],
+  input[type="number"],
+  input[type="tel"],
+  input[type="email"],
+  select,
+  textarea {
+    font-size: max(1rem, 16px);
   }
 }
 

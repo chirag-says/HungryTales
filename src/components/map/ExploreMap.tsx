@@ -41,7 +41,7 @@ export function ExploreMap({ places, unmapped, focusId }: { places: MapPlace[]; 
       <div className="relative">
         <FoodMap points={points} selectedId={selectedId} onSelect={setSelectedId} className="h-[62dvh] min-h-80 overflow-hidden rounded-3xl lg:h-[72dvh]" />
         {selected ? (
-          <div className="absolute inset-x-3 bottom-3 z-[500] rounded-2xl bg-surface p-4 shadow-xl lg:hidden" role="dialog" aria-label={selected.name}>
+          <div className="pb-safe absolute inset-x-3 bottom-3 z-[500] rounded-2xl bg-surface p-4 shadow-xl lg:hidden" role="dialog" aria-label={selected.name}>
             <PlaceSummaryCard place={selected} onClose={() => setSelectedId(null)} />
           </div>
         ) : null}

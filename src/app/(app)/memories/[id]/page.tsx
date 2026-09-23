@@ -57,7 +57,7 @@ export default async function MemoryPage({ params }: Props) {
               {weekdayOf(memory.eatenOn)} · {formatLongDate(memory.eatenOn)}
               {time ? ` · ${time}` : ""}
             </Eyebrow>
-            <h1 className="font-display mt-2 text-4xl leading-[1.1] text-ink sm:text-5xl">{memory.title}</h1>
+            <h1 className="font-display mt-2 text-3xl leading-[1.1] text-ink sm:text-5xl">{memory.title}</h1>
             {memory.place ? (
               <p className="mt-3 text-lg text-ink-2">
                 <Link href={`/explore/places/${memory.place.id}`} className="underline decoration-line underline-offset-4 hover:decoration-ink-3">

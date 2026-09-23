@@ -182,7 +182,7 @@ async function CalendarView({
             <span className="size-11" />
           )}
         </div>
-        <table className="w-full table-fixed border-separate border-spacing-0.5 sm:border-spacing-1">
+        <table className="w-full table-fixed border-separate border-spacing-1 sm:border-spacing-1.5">
           <thead>
             <tr>
               {["M", "T", "W", "T", "F", "S", "S"].map((d, i) => (

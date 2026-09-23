@@ -91,9 +91,9 @@ export function MemoryCard({
   if (variant === "feature") {
     return (
       <Link href={link} className="group relative block overflow-hidden rounded-3xl bg-paper-2">
-        <Photo src={memory.cover?.displayUrl ?? null} alt={alt} eager={eager} className="aspect-[4/5] sm:aspect-[16/10]" imgClassName="transition-transform duration-700 group-hover:scale-[1.02]" />
+        <Photo src={memory.cover?.displayUrl ?? null} alt={alt} eager={eager} className="aspect-[3/4] sm:aspect-[16/10]" imgClassName="transition-transform duration-700 group-hover:scale-[1.02]" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" aria-hidden />
-        <div className="absolute inset-x-0 bottom-0 p-5 text-white sm:p-7">
+        <div className="absolute inset-x-0 bottom-0 p-4 text-white sm:p-7">
           <p className="text-sm text-white/80">
             {weekdayOf(memory.eatenOn)}, {date}
             {time ? ` · ${time}` : ""}
@@ -130,7 +130,7 @@ export function MemoryCard({
 
   if (variant === "compact") {
     return (
-      <Link href={link} className="group flex w-44 shrink-0 flex-col gap-2 sm:w-52">
+      <Link href={link} className="group flex w-[10.5rem] shrink-0 flex-col gap-2 sm:w-52">
         <Photo src={memory.cover?.thumbUrl ?? null} alt={alt} eager={eager} className="aspect-[4/5] rounded-2xl" imgClassName="transition-transform duration-500 group-hover:scale-[1.03]" />
         <div>
           <p className="truncate font-medium text-ink">{memory.title}</p>
@@ -145,7 +145,7 @@ export function MemoryCard({
 
   return (
     <Link href={link} className="group flex gap-4 rounded-2xl p-2 -mx-2 transition-colors hover:bg-paper-2/70">
-      <Photo src={memory.cover?.thumbUrl ?? null} alt={alt} eager={eager} className="size-24 shrink-0 rounded-xl sm:size-28" />
+      <Photo src={memory.cover?.thumbUrl ?? null} alt={alt} eager={eager} className="size-[6.5rem] shrink-0 rounded-xl sm:size-28" />
       <div className="flex min-w-0 flex-1 flex-col py-0.5">
         <p className="text-xs text-ink-3">
           {time ?? weekdayOf(memory.eatenOn)}

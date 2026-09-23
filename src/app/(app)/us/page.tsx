@@ -16,7 +16,7 @@ function Stat({ label, value, note }: { label: string; value: React.ReactNode; n
   return (
     <div className="rounded-2xl bg-surface p-4">
       <p className="text-sm text-ink-3">{label}</p>
-      <p className="font-display mt-1 text-3xl tabular-nums">{value}</p>
+      <p className="font-display mt-1 text-2xl tabular-nums sm:text-3xl">{value}</p>
       {note ? <p className="mt-0.5 text-sm text-ink-3">{note}</p> : null}
     </div>
   );

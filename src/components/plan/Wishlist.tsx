@@ -49,7 +49,7 @@ export function Wishlist({ wishes, currency }: { wishes: WishView[]; currency: s
       ) : (
         <ul className="flex flex-col gap-2">
           {open.map((w) => (
-            <li key={w.id} className="flex items-center gap-3 rounded-2xl bg-surface p-3 pl-4">
+            <li key={w.id} className="flex flex-wrap items-center gap-x-3 gap-y-2 rounded-2xl bg-surface p-3 pl-4">
               <div className="min-w-0 flex-1">
                 <p className="truncate font-medium">{w.title}</p>
                 <p className="truncate text-sm text-ink-3">
