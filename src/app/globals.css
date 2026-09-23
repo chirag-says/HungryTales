@@ -1,26 +1,222 @@
 @import "tailwindcss";
 
+/*
+ * HungryTales design tokens. Warm paper, ink, one chili accent.
+ * Person colours tint small marks only; names are always shown too.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --paper: #f7f2ea;
+  --paper-2: #efe7da;
+  --surface: #fffcf7;
+  --ink: #1f1a15;
+  --ink-2: #5a5046;
+  --ink-3: #6f655a;
+  --line: #e2d8c8;
+  --accent: #b83d26;
+  --accent-soft: #f4dcd3;
+  --on-accent: #fffaf5;
+  --p1: #b83d26;
+  --p2: #2f5d7c;
+  --good: #3f6b45;
+  --warn: #9a6512;
+  --scrim: rgb(20 16 12 / 0.55);
+  color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --paper: #15120f;
+    --paper-2: #1d1915;
+    --surface: #221d18;
+    --ink: #f3ece2;
+    --ink-2: #c3b8aa;
+    --ink-3: #9d9285;
+    --line: #362f27;
+    --accent: #e0694f;
+    --accent-soft: #3a211a;
+    --on-accent: #1a0f0b;
+    --p1: #e0694f;
+    --p2: #7fb2d6;
+    --good: #8cbf8f;
+    --warn: #e0b060;
+    --scrim: rgb(0 0 0 / 0.65);
+    color-scheme: dark;
   }
 }
 
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-on-accent: var(--on-accent);
+  --color-p1: var(--p1);
+  --color-p2: var(--p2);
+  --color-good: var(--good);
+  --color-warn: var(--warn);
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display-face), ui-serif, Georgia, serif;
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+  text-size-adjust: 100%;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+}
+
+::selection {
+  background: var(--accent-soft);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Display type: optical sizing on, slight softness for warmth. */
+.font-display {
+  font-variation-settings: "SOFT" 50, "WONK" 0;
+  letter-spacing: -0.01em;
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Native <dialog> as bottom sheet / modal. */
+dialog.sheet {
+  margin: auto auto 0;
+  width: 100%;
+  max-width: 34rem;
+  max-height: 92dvh;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: 1.25rem 1.25rem 0 0;
+  overscroll-behavior: contain;
+}
+@media (min-width: 768px) {
+  dialog.sheet {
+    margin: auto;
+    border-radius: 1.25rem;
+  }
+}
+dialog.sheet::backdrop {
+  background: var(--scrim);
+}
+dialog.sheet[open] {
+  animation: sheet-in 260ms var(--ease-out-soft);
+}
+@keyframes sheet-in {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+}
+
+.photo-fade {
+  transition: opacity 300ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Leaflet overrides so the map sits in the same palette. */
+.leaflet-container {
+  background: var(--paper-2);
+  font-family: var(--font-sans);
+}
+.leaflet-control-attribution {
+  font-size: 10px;
+}
+
+/* Map pins: chili dots, ink clusters, a ring on the selected pin. */
+.ht-pin {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font: 600 12px/1 var(--font-sans);
+  border: 3px solid var(--surface);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.25);
+  cursor: pointer;
+}
+.ht-pin--cluster {
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 13px;
+}
+.ht-pin--selected {
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+}
+
+/* OSM tiles, softened toward the paper palette; inverted for dark mode. */
+.ht-tiles {
+  filter: saturate(0.55) sepia(0.12) contrast(0.95);
+}
+@media (prefers-color-scheme: dark) {
+  .ht-tiles {
+    filter: invert(1) hue-rotate(180deg) saturate(0.35) brightness(0.85) contrast(0.9);
+  }
+}
+
+/* Always-dark surface (Memory Mode): the dark tokens, regardless of system theme. */
+.theme-night {
+  --paper: #15120f;
+  --paper-2: #1d1915;
+  --surface: #221d18;
+  --ink: #f3ece2;
+  --ink-2: #c3b8aa;
+  --ink-3: #9d9285;
+  --line: #362f27;
+  --accent: #e0694f;
+  --on-accent: #1a0f0b;
+  color-scheme: dark;
 }
