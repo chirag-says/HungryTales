@@ -20,21 +20,20 @@ function client() {
 }
 
 /**
- * Photos are stored as `authenticated` assets: they can only be fetched through
- * URLs signed with our API secret, so nobody can enumerate or guess them, and the
- * named sizes below are the only transformations we ever sign.
+ * Photos use `upload` delivery type with UUID-based paths (hungrytales/{duoId}/{photoId})
+ * so URLs are effectively private since the paths are unguessable.
+ * Cloudinary's `authenticated` delivery type requires paid plan features for serving,
+ * so we use `upload` which works on all plans including the free tier.
  */
 const VARIANTS: Record<keyof PhotoUrls, object[]> = {
   thumb: [{ width: 720, crop: "limit" }, { fetch_format: "auto", quality: "auto" }],
   display: [{ width: 2048, height: 2048, crop: "limit" }, { fetch_format: "auto", quality: "auto:good" }],
 };
 
-function signedUrl(key: string, variant: keyof PhotoUrls): string {
+function photoUrl(key: string, variant: keyof PhotoUrls): string {
   return client().url(key, {
-    type: "authenticated",
+    type: "upload",
     resource_type: "image",
-    sign_url: true,
-    long_url_signature: true,
     secure: true,
     transformation: VARIANTS[variant],
   });
@@ -47,7 +46,7 @@ export function cloudinaryDriver(): StorageDriver {
       const e = env();
       const params = {
         public_id: key,
-        type: "authenticated",
+        type: "upload",
         timestamp: Math.floor(Date.now() / 1000),
         overwrite: false,
         allowed_formats: "jpg",
@@ -76,12 +75,12 @@ export function cloudinaryDriver(): StorageDriver {
       return utils.verify_api_response_signature(key, receipt.version, receipt.signature);
     },
     async urls(keys) {
-      return Object.fromEntries(keys.map((k) => [k, { thumb: signedUrl(k, "thumb"), display: signedUrl(k, "display") }]));
+      return Object.fromEntries(keys.map((k) => [k, { thumb: photoUrl(k, "thumb"), display: photoUrl(k, "display") }]));
     },
     async remove(keys) {
       const c = client();
       for (let i = 0; i < keys.length; i += 100) {
-        await c.api.delete_resources(keys.slice(i, i + 100), { type: "authenticated", resource_type: "image" });
+        await c.api.delete_resources(keys.slice(i, i + 100), { type: "upload", resource_type: "image" });
       }
     },
   };
